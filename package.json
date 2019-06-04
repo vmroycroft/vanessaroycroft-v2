@@ -1,0 +1,22 @@
+{
+	"name": "vanessaroycroft",
+	"version": "2.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "gulp build",
+		"deploy": "gulp deploy",
+		"develop": "gulp develop",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "",
+	"devDependencies": {
+		"del": "^3.0.0",
+		"gulp": "^4.0.0",
+		"gulp-notify": "^3.2.0",
+		"gulp-plumber": "^1.2.0",
+		"gulp-rsync": "0.0.8",
+		"gulp-sass": "^4.0.1",
+		"gulp-sourcemaps": "^2.6.4"
+	}
+}
