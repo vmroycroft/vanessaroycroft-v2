@@ -1,5 +1,5 @@
 # Personal Website ![v2.0.0](https://img.shields.io/github/package-json/v/vmroycroft/vanessaroycroft-v2.svg)
-This is the second version of my personal website built with [gulp](https://gulpjs.com/). I wrote a few gulp tasks to let me easily generate a production build as well as deploy to my web server.
+This is the second version of my personal website. I wrote a few [gulp](https://gulpjs.com/) tasks to let me easily generate a production build as well as deploy to my web server.
 
 ## Quick Start
 1. Install dependencies
