@@ -1,4 +1,4 @@
-# Personal Website ![v2.0.0](https://img.shields.io/github/package-json/v/vmroycroft/vanessaroycroft-v2.svg)
+# Personal Website ![v2.0.0](https://img.shields.io/badge/version-v2.0.0-blue.svg)
 This is the second version of my personal website. I wrote a few [gulp](https://gulpjs.com/) tasks to let me easily generate a production build as well as deploy to my web server.
 
 ## Quick Start
