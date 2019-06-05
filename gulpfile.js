@@ -4,10 +4,12 @@
  *   'gulp develop' or 'gulp dev' - Runs in development mode (watches for changes in files).
  * 	 'gulp build' - Builds the dist folder.
  * 	 'gulp deploy' - Builds the dist folder and syncs it with a web server.
+ *   'gulp github' - Pushes the dist folder to the gh-pages branch for Github Pages.
  */
 
 // gulp plugins
 const del = require('del'),
+	ghpages = require('gh-pages'),
 	gulp = require('gulp'),
 	notify = require('gulp-notify'),
 	plumber = require('gulp-plumber'),
@@ -34,10 +36,10 @@ let resources = {
 	},
 	rsyncConf = {
 		root: './dist/',
-		hostname: '...',
-		username: '...',
-		shell: '...',
-		destination: '...',
+		hostname: 'your_hostname_here',
+		username: 'your_username_here',
+		shell: 'your_shell_here',
+		destination: 'your_destination_here',
 		silent: false
 	};
 
@@ -49,7 +51,7 @@ function cleanDist() {
 }
 
 /**
- * Syncs the dist/ folder with the web server.
+ * Syncs the dist folder with the web server specified in rsyncConf.
  */
 function deploy() {
 	return gulp
@@ -75,19 +77,23 @@ function getPlumber() {
 }
 
 /**
+ * Pushes the dist folder to the gh-pages branch for Github Pages.
+ */
+function github(done) {
+	ghpages.publish('./dist', done);
+}
+
+/**
  * Copies folders and files that don't need compilation or transpilation to the dist folder.
  */
 function static() {
-	return (
-		gulp
-			.src(resources.static, {
-				base: './src/',
-				nodir: true
-			})
-			// .pipe(changed('./dist/')) // only pass through files that changed
-			.pipe(getPlumber())
-			.pipe(gulp.dest('./dist/'))
-	);
+	return gulp
+		.src(resources.static, {
+			base: './src/',
+			nodir: true
+		})
+		.pipe(getPlumber())
+		.pipe(gulp.dest('./dist/'));
 }
 
 /**
@@ -102,7 +108,6 @@ function styles() {
 	return gulp
 		.src(resources.styles, {
 			base: './src/'
-			// nodir: true
 		})
 		.pipe(getPlumber())
 		.pipe(sourcemaps.init()) // initialize sourcemaps for .min.css files
@@ -125,6 +130,7 @@ const build = gulp.series(cleanDist, gulp.parallel(static, styles));
 
 // these tasks are publicly available
 exports.build = gulp.series(build);
-exports.deploy = gulp.series(deploy);
+exports.deploy = gulp.series(build, deploy);
 exports.develop = exports.dev = gulp.series(build, watch);
+exports.github = gulp.series(build, github);
 exports.default = exports.develop;

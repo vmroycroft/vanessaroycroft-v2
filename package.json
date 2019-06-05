@@ -7,11 +7,13 @@
 		"build": "gulp build",
 		"deploy": "gulp deploy",
 		"develop": "gulp develop",
+		"github": "gulp github",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "",
 	"devDependencies": {
 		"del": "^3.0.0",
+		"gh-pages": "^2.0.1",
 		"gulp": "^4.0.0",
 		"gulp-notify": "^3.2.0",
 		"gulp-plumber": "^1.2.0",
